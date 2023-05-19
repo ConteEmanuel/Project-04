@@ -34,11 +34,11 @@ function numberConstructor() {
 numberConstructor();
 const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
 let a = "";
-let operator;
+let operator ="";
 let b = "";
 
 function logKey1(e) {
-  if (!operator) {
+  if (operator ==="") {
     switch (true) {
       case e.key in operators:
         if (a === "") {
@@ -70,6 +70,10 @@ function logKey1(e) {
         break;
       case (e.key in numbers):
         b = e.key;
+        console.log("l73");
+        console.log("a " + a);
+        console.log("operator " + operator);
+        console.log("b=" + b);        
         document.removeEventListener("keydown" , logKey1);
         document.addEventListener("keydown" , logKey2);
   }
@@ -78,9 +82,21 @@ function logKey1(e) {
 document.addEventListener("keydown", logKey1);
 
 function logKey2(e) {
-  b=b+e.key;
-  console.log("hello");
-  console.log("a " + a);
-  console.log("operator " + operator);
-  console.log("b=" + b);
+  switch (true){
+    case (e.key in numbers):
+      b=b+e.key;
+      console.log("l85");
+      console.log("a " + a);
+      console.log("operator " + operator);
+      console.log("b=" + b);
+      break;
+    case (e.key === "Enter"):
+      a= Number (a);
+      b= Number (b);
+      a = String (operate(a,b,operator));
+      b="";
+      operator="";
+      console.log(a + b + operator)
+      document.addEventListener("keydown", logKey1);
+}
 }
