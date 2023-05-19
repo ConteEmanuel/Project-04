@@ -39,50 +39,48 @@ let b = "";
 
 function logKey1(e) {
   if (!operator) {
-    if (e.key in operators && a === "") { // if operator comes first then 1stNumber
-      a = "0";
-      operator = e.key;
-      console.log("l45")
-      console.log("a " + a);
-      console.log("operator " + operator);
-      return;
+    switch (true) {
+      case e.key in operators:
+        if (a === "") {
+          a = "0";
+          operator = e.key;
+          console.log("l47");
+          console.log("a " + a);
+          console.log("operator " + operator);
+          break;
+        } else {
+          operator = e.key;
+          console.log("l53");
+          console.log("a " + a);
+          console.log("operator " + operator);
+          break;
+        }
+      case e.key in numbers:
+        a = a + e.key;
+        console.log("l60");
+        console.log("a " + a);
+        console.log("operator " + operator);
     }
-    if (e.key in operators) {  // operator comes before 1stNumber is assigned
-      operator = e.key;
-      console.log("l52")
-      console.log("a " + a);
-      console.log("operator " + operator);
-      return;
-    }
-    if (e.key in numbers) { // 1st number is at his normal position
-      a = a + e.key;
-      console.log("l59")
-      console.log("a " + a);
-      console.log("operator " + operator);
-      return;
-    }
-  } else if (e.key in operators) { // if operator is assigned more then once op=op
-    operator = e.key;
-    console.log("l66")
-    console.log("a " + a);
-    console.log("operator " + operator);
-    return;
-  } else if (e.key in numbers) { // if 1stNumber is assigned and Op, 1ndNumber is assigned
-    b = e.key;
-    document.removeEventListener("keydown", logKey1);
-    document.addEventListener("keydown", logKey2);
-    console.log("l74")
-    console.log("a " + a);
-    console.log("b " + b);
-    console.log("operator " + operator);
+  } else  switch (true){
+      case (e.key in operators):
+        operator = e.key;
+        console.log("l67");
+        console.log("a " + a);
+        console.log("operator " + operator);
+        break;
+      case (e.key in numbers):
+        b = e.key;
+        document.removeEventListener("keydown" , logKey1);
+        document.addEventListener("keydown" , logKey2);
   }
 }
 
 document.addEventListener("keydown", logKey1);
 
 function logKey2(e) {
+  b=b+e.key;
   console.log("hello");
   console.log("a " + a);
   console.log("operator " + operator);
-  console.log("a=" + b);
+  console.log("b=" + b);
 }
