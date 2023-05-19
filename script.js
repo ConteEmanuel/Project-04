@@ -14,33 +14,43 @@ operate = function (value1, value2, operator) {
   }
 };
 // keysLogger start here
-const numbers = {
-  0: "0",
-  1: "1",
-  2: "2",
-  3: "3",
-  4: "4",
-  5: "5",
-  6: "6",
-  7: "7",
-  8: "8",
-  9: "9",
-  0: "0",
-  ".": ".",
+let numbers ={};
+function numberConstructor(){
+  numbers = {
+    0: "0",
+    1: "1",
+    2: "2",
+    3: "3",
+    4: "4",
+    5: "5",
+    6: "6",
+    7: "7",
+    8: "8",
+    9: "9",
+    0: "0",
+    ".": "."
+  };
 };
-//const operators = {"+":"+","-":"-","*":"*","/":"/"};
+numberConstructor();
+const operators = {"+":"+","-":"-","*":"*","/":"/"};
 let a = "";
 let operator;
 
 function logKey1(e) {
-  if (e.key === "." && a===""){
+  if (e.key in operators && (a === "" || a === "0")){ // if operator comes first => a=0 and op reset itself
+    a="0.";
+    operator=e.key;
+    console.log(operator);
+    numbers = {};
+  }
+  if (e.key === "." && a===""){ // if dot comes first this add "0"
     a = "0.";
     return
   }
-  if (e.key in numbers) {
+  if (e.key in numbers) { // adds number or "."
     a = a + e.key;
   }
-  if (e.key === ".") {
+  if (e.key === ".") {  // prevent two or more dots
     delete numbers["."];
     return;
   }
