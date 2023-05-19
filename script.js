@@ -14,15 +14,37 @@ operate = function (value1, value2, operator) {
   }
 };
 // keysLogger start here
-const numbers = {"0":"0","1":"1","2":"2","3":"3","4":"4","5":"5","6":"6","7":"7","8":"8","9":"9","0":"0",".":"."};
+const numbers = {
+  0: "0",
+  1: "1",
+  2: "2",
+  3: "3",
+  4: "4",
+  5: "5",
+  6: "6",
+  7: "7",
+  8: "8",
+  9: "9",
+  0: "0",
+  ".": ".",
+};
 //const operators = {"+":"+","-":"-","*":"*","/":"/"};
-let a="";
+let a = "";
 let operator;
 
-function logKey1 (e){
-if (e.key in numbers){
-a= a + e.key;}
-console.log(a);
+function logKey1(e) {
+  if (e.key === "." && a===""){
+    a = "0.";
+    return
+  }
+  if (e.key in numbers) {
+    a = a + e.key;
+  }
+  if (e.key === ".") {
+    delete numbers["."];
+    return;
+  }
+  console.log(a);
 }
 
 document.addEventListener("keydown", logKey1);
