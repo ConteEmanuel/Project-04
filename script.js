@@ -1,3 +1,4 @@
+
 // operations f() start here
 let firstNumber, secondNumber, result, storedResult;
 
@@ -33,62 +34,50 @@ function numberConstructor() {
 }
 numberConstructor();
 const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
-let a = "";
-let operator = "";
-let b = "";
+let a = b = operator = "";
+
 
 function logKey1(e) {
-  console.log(e.key); // Control is Our Sign Change Key
-  if (e.key === "Control" && a != "0") {
-    a = "-1" * a;
-    return;
-  }
-  if (operator === "") {
-    switch (true) {
-      case e.key in operators:  //  if Operator Dont exist and 1stNumber is not Present then 1stNumber = "0" and OP is Assigned for the First Time
-        if (a === "") {
-          a = "0";
-          operator = e.key;
-          console.log("l47");
-          console.log("a " + a);
-          console.log("operator " + operator);
-          return;
-        } else {
-          operator = e.key; // if 1stNumber and OP exist, then we can change Operator more than once 
-          console.log("l53");
-          console.log("a " + a);
-          console.log("operator " + operator);
-          return;
-        }
-      case e.key in numbers:    
-        if (a === "0") {  //  if 1stNumber is "0" we can Change it Again
-          a = e.key;
-          return;
-        } else {  // if 1stNumber is !0 then, we keep adding numbers at 1stNumber
-          a = a + e.key;
-          console.log("l60");
-          console.log("a " + a);
-          console.log("operator " + operator);
-        }
+  switch (true) {
+    case e.key === "Control" && a != 0: {         // Control Key is Our Sign Change Key
+      a = "-1" * a;
+      break;
     }
-  } else
-    switch (true) {
-      case e.key in operators: // if 1stNumber and Operator Exist, we can change the operator
-        operator = e.key;
-        console.log("l67");
-        console.log("a " + a);
-        console.log("operator " + operator);
-        return;
-      case e.key in numbers: // if 1stNUmberExist and operator, then if its a number => its sndNumber!
-        b = e.key;
-        console.log("l73");
-        console.log("a " + a);
-        console.log("operator " + operator);
-        console.log("b=" + b);
-        document.removeEventListener("keydown", logKey1); 
-        document.addEventListener("keydown", logKey2);  // We remove 1stNumber() and go to sndNumber() called logKey2
-    } 
+    case operator === "" && e.key in operators: { //  if Operator Don´t Exist and 1stNumber is not Present 
+      operator = e.key;                           //  then 1stNumber  is Filled with "0" and OP is Assigned
+      if (a === "") a = "0";  
+      break;
+    }
+    case operator === "" && e.key in numbers: {   // Normal use
+      a = a + e.key;
+      if (a === "0") a = e.key;                   //  If firstNumber = 0 we can Change Again his Value
+      break;
+    }
+    case operator != "": {
+      numbers["."] = ".";                         // This With the Lines at the End of this f() Prevents Double or More "dots"
+      switch (true) {
+        case e.key in operators: {                // If 1stNUmber and Operator Exist we can change Operator more then Once
+          operator = e.key;
+          return;
+        }
+        case e.key in numbers: {                  //  If op exist and now we ave a Number, we have 2ndNumber
+          b = e.key;  
+          if (b === ".")                          //  fix . => "0." Display issue on 2ndNumber
+          b = "0.";
+        if ( e.key === ".")                       //  Prevents double or more "dots" on 2ndNumber
+          delete numbers["."];
+          document.removeEventListener("keydown", logKey1);
+          document.addEventListener("keydown", logKey2);
+        }
+      }
+    }
+  }
+  if (a === ".")                                   //  fix . => "0." Display issue on 1stNumber
+    a = "0.";
+  if ( e.key === ".")
+    delete numbers["."];                           //  Prevents double or more "dots" on 1ndNumber
 }
+
 
 document.addEventListener("keydown", logKey1);
 
