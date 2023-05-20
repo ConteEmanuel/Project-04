@@ -35,6 +35,7 @@ function numberConstructor() {
 numberConstructor();
 const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
 let a = b = operator = "";
+let enter = true;
 
 
 function logKey1(e) {
@@ -61,7 +62,8 @@ function logKey1(e) {
           return;
         }
         case e.key in numbers: {                  //  If op exist and now we ave a Number, we have 2ndNumber
-          b = e.key;  
+          b = e.key;
+          enter = true;  
           if (b === ".")                          //  fix . => "0." Display issue on 2ndNumber
           b = "0.";
         if ( e.key === ".")                       //  Prevents double or more "dots" on 2ndNumber
@@ -98,7 +100,8 @@ function logKey2(e) {
         console.log("b=" + b);
         return;
       }
-    case e.key === "Enter": //Enter is our "=" Operator 
+    case e.key === "Enter" && enter === true: //Enter is our "=" Operator 
+      enter = false;                          // This prevents "Enter" more then once "error"
       a = Number(a);
       b = Number(b);
       a = String(operate(a, b, operator));
