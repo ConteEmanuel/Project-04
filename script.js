@@ -1,4 +1,3 @@
-
 // operations f() start here
 let firstNumber, secondNumber, result, storedResult;
 
@@ -35,10 +34,10 @@ function numberConstructor() {
 numberConstructor();
 const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
 let a = b = operator = "";
-let enter = true;
+let enter = true; // Enter Key State Switch                            
 
 
-function logKey1(e) {
+function logKey1(e) {                             // careful, return and break don't have the same effect here
   switch (true) {
     case e.key === "Control" && a != 0: {         // Control Key is Our Sign Change Key
       a = "-1" * a;
@@ -50,7 +49,7 @@ function logKey1(e) {
       break;
     }
     case operator === "" && e.key in numbers: {   // Normal use
-      a = a + e.key;
+      a = a + e.key;                              // !IMPORTANT! we cant use op ternary, because we need this value on var. "a" to execute the next line
       if (a === "0") a = e.key;                   //  If firstNumber = 0 we can Change Again his Value
       break;
     }
@@ -64,24 +63,19 @@ function logKey1(e) {
         case e.key in numbers: {                  //  If op exist and now we ave a Number, we have 2ndNumber
           b = e.key;
           enter = true;  
-          if (b === ".")                          //  fix . => "0." Display issue on 2ndNumber
-          b = "0.";
-        if ( e.key === ".")                       //  Prevents double or more "dots" on 2ndNumber
-          delete numbers["."];
+          if (b === ".") b = "0.";                //  fix . => "0." Display issue on 2ndNumber
+        if ( e.key === ".") delete numbers["."];  //  Prevents double or more "dots" on 2ndNumber
           document.removeEventListener("keydown", logKey1);
           document.addEventListener("keydown", logKey2);
         }
       }
     }
   }
-  if (a === ".")                                   //  fix . => "0." Display issue on 1stNumber
-    a = "0.";
-  if ( e.key === ".")
-    delete numbers["."];                           //  Prevents double or more "dots" on 1ndNumber
+  if (a === ".") a = "0.";                        //  fix . => "0." Display issue on 1stNumber
+  if ( e.key === ".") delete numbers["."];        //  Prevents double or more "dots" on 1ndNumber                          
 }
 
-
-document.addEventListener("keydown", logKey1);
+document.addEventListener("keydown", logKey1); // this fo in main()
 
 function logKey2(e) {
   switch (true) {
@@ -104,9 +98,8 @@ function logKey2(e) {
       enter = false;                          // This prevents "Enter" more then once "error"
       a = Number(a);
       b = Number(b);
-      a = String(operate(a, b, operator));
-      b = "";
-      operator = "";
+      a = parseFloat(operate(a, b, operator)).toFixed(3);
+      b =operator = "";
       console.log(a + b + operator);
       document.addEventListener("keydown", logKey1);
   }
