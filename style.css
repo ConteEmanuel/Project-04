@@ -6,7 +6,7 @@
 }
 
 body {
-    margin: 10% 10%;
+    margin: 10% 0;
     background-color: gray;
 }
 
@@ -62,6 +62,7 @@ body {
 #keyPad{
     display: flex;
     gap: 5px;
+    width: fit-content;
 }
 
 [data-key="="] {
@@ -70,4 +71,14 @@ body {
 #keyEqual{
     font-weight: lighter;
     font-size: 120px;
+}
+#calcContainer{
+    display: flex;
+    flex-direction: column;
+    width:822px;
+
+}
+#display    {
+    height: 141px;
+    background-color: aqua;
 }
