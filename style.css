@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    margin: 0 10%;
+    background-color: gray;
+}
+
+#leftSideKeypad {
+    width: 390px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    background-color: red;
+    border: solid salmon 2px;    
+}
+
+.key {
+    box-sizing: border-box;
+    text-align: center;
+    width: 130px;
+    height: 40px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    border: solid salmon 2px;
+}
