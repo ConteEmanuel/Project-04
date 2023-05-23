@@ -13,8 +13,9 @@ body {
     width: fit-content;
     background-color: white;
     border:8px solid  orange;
-    border-radius: 10px;
+    border-radius: 14px;
 }
+
 
 #leftSideKeyPad , #operators{
     width: 442px;
