@@ -36,7 +36,7 @@ const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
 let a = (b = operator = "");
 let enter = true; // Enter Key State Switch
 
-function resetValues (){
+function resetValues (){  
   a = b = operator = "";
       enter = true;
       numbers = {};
@@ -65,7 +65,7 @@ function logKey1(e) {
     }
     case operator != "": {
       numbers["."] = "."; // This With the Lines at the End of this f() Prevents Double or More "dots"
-      if (Number(a) == 0 ) {
+      if (Number(a) == 0 ) {  // This makes an alert on Division by 0
         alert("You can't divide by zero", "Press any Key to continue");
         resetValues();
         return;
@@ -125,7 +125,7 @@ function logKey2(e) {
 
 document.addEventListener("keydown", clearData);
 
-function clearData(e) {
+function clearData(e) {   // Clear Button f()
   if (e.key === "Escape") {
     let confirmation = prompt(
       "Do you want to RESET you current operation?",
