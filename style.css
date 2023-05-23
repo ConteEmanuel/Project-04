@@ -13,7 +13,7 @@ body {
 #leftSideKeyPadContainer , #operatorsContainer, #rightSideContainer{
     background-color: white;
     border:8px solid  orange;
-    border-radius: 14px;
+    border-radius: 20px;
 }
 
 #leftSideKeyPad , #operators , #rightSide{
@@ -22,8 +22,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background-color: orange;
-    padding: 2px 0;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 4px solid white
 }
 #operators , #rightSide{
@@ -35,10 +34,10 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    width: 129px;
+    width: 131px;
     height: 66px;
     border: 2px solid orange;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: antiquewhite;
 }
 
@@ -56,7 +55,7 @@ body {
     background-color: white;
     padding: 4px;
     border: 4px solid orange;
-    border-radius: 14px;
+    border-radius: 16px;
 }
 
 #keyPad{
@@ -66,19 +65,29 @@ body {
 }
 
 [data-key="="] {
-    height:150px;
+    height:148px;
 }
 #keyEqual{
     font-weight: lighter;
-    font-size: 120px;
+    font-size: 121px;
 }
 #calcContainer{
     display: flex;
     flex-direction: column;
-    width:822px;
-
+    gap: 6px;
+    width:816px;
 }
+
 #display    {
     height: 141px;
     background-color: aqua;
+    border-radius: 14px;
+    border: 4px solid white;
+    font-size: 82px;
+    text-align: right;
+}
+#displayContainer   {
+    background-color: white;
+    border: 8px solid aqua;
+    border-radius:  20px;
 }
