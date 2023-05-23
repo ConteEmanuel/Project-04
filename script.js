@@ -32,15 +32,16 @@ function numberConstructor() {
   };
 }
 numberConstructor();
+
 const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
-let a = (b = operator = "");
+let a = (b = operator = ""); //a and b are 1st and 2nd number and and the operator corresponds to the operation to execute
 let enter = true; // Enter Key State Switch
 
-function resetValues (){  
+function resetValues() {
   a = b = operator = "";
-      enter = true;
-      numbers = {};
-      numberConstructor();
+  enter = true;
+  numbers = {};
+  numberConstructor();
 }
 
 function logKey1(e) {
@@ -65,7 +66,7 @@ function logKey1(e) {
     }
     case operator != "": {
       numbers["."] = "."; // This With the Lines at the End of this f() Prevents Double or More "dots"
-      if (Number(a) == 0 ) {  // This makes an alert on Division by 0
+      if (Number(a) == 0) {  // This makes an alert on Division by 0
         alert("You can't divide by zero", "Press any Key to continue");
         resetValues();
         return;
@@ -131,6 +132,25 @@ function clearData(e) {   // Clear Button f()
       "Do you want to RESET you current operation?",
       "press yes to reset or any key to Ignore"
     );
-    if (confirmation === "yes") {resetValues();}
+    if (confirmation === "yes") { resetValues(); }
   }
 }
+
+function backspace(e) {   // backspace f() for 1st and 2nd number
+  if (e.key === "Backspace") {
+    switch (true) {
+      case a != "" && b === "": {
+        let auxA = a.split("");
+        auxA.pop();
+        a = auxA.join("");
+        return;
+      }
+      case a != "" && b != "": {
+        let auxB = b.split("");
+        auxB.pop();
+        b = auxB.join("");
+      }
+    }
+  }
+}
+document.addEventListener("keydown", backspace);
