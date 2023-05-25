@@ -154,3 +154,13 @@ function backspace(e) {   // backspace f() for 1st and 2nd number
   }
 }
 document.addEventListener("keydown", backspace);
+
+addEventListener("click", (e) => {
+    console.log(e.target)
+    const touch = e.target.getAttribute("data-key");
+  console.log(touch)
+    
+},{
+  capture: false,
+  once: true
+})
