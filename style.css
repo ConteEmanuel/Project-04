@@ -2,26 +2,45 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    font-size: 28px;
-    color: #131111bc;
+    font-size: 26px;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nightKeys{
+    background-color: black;
+    color: rgba(255, 255, 254, 0.8);
+}
 
+
+.nightKeysChange{
+    background-color: rgba(255, 255, 254,0.8);
+    color:rgba(161, 152, 152, 1);
 }
 
 body {
     z-index: 1111;
-    margin-top: 2%;
-    margin-left: 2%;
-    background-color: #ffffff;
-    /*background-color: #555;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-}/*header, footer{
-    z-index: 1111;
+#nightMode{
+    padding-top: 4px;
+    text-align: center;
+    font-size: 18px;
+    margin: 20px 20px;
+    height: 30px;
+    width: 156px;
     background:rgba(255, 255, 255, 0.30);
-    box-shadow:0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow:0 8px 12px 0 rgba(174, 194, 193, 0.37);
     backdrop-filter:blur( 2px );
-    border: 1px solid rgba(255, 255, 255, 0.18)
-}*/
-
+    border: 1px solid  rgba(161, 152, 152, 0.18);
+    border-radius: 14px;
+}
 
 #leftSideKeyPadContainer,
 #operatorsContainer,
@@ -29,9 +48,7 @@ body {
     height: 272px;
     z-index: 7777;
 }
-#leftSideKeyPadContainer{
 
-}
 #leftSideKeyPad, #operators, #rightSide{
     height: 269px;
     gap: 1px;
@@ -44,8 +61,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /*background-color: #ff8c00;*/
-    /*border: 4px solid #f0ffff;*/
 }
 
 #operators,
@@ -62,9 +77,7 @@ body {
     box-sizing: border-box;
     width: 106px;
     height: 59px;
-    /*border:2px solid #ff8c00;*/
     border-radius: 10px;
-    /*background-color: #ffdab9;*/
     background:rgba(255, 255, 255, 0.30);
     box-shadow:0 8px 32px 0 rgba(174, 194, 193, 0.37);
     backdrop-filter:blur( 2px );
@@ -84,9 +97,7 @@ body {
 
 .keyContainer {
     z-index: 8888;
-        /*background-color: #f0ffff;*/
     padding: 4px;
-    /*border: 4px solid #ff8c00;*/
 }
 
 #keyPad {
@@ -128,7 +139,6 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    /*background-color: #00ffff ;*/
     border-radius: 14px;
     border: 4px solid #f0ffff;
     text-align: right;
@@ -144,8 +154,6 @@ body {
     margin-left: 5px;
     margin-top: 4px;
     z-index:7777;
-/*    background-color:#f0ffff;*/
-/*    border: 8px solid #00ffff ;*/
     border-radius: 20px;
     background:rgba(255, 255, 255, 0.30);
     box-shadow:0 8px 12px 0 rgba(174, 194, 193, 0.37);
@@ -154,8 +162,9 @@ body {
 }
 #sign{
     width: 10%;
-    padding: 5px 0px;
     height: 60px;
+    font-size: 46px;
+    font-weight: lighter;
 }
 #displayText {
     padding: 5px 20px;
@@ -175,7 +184,7 @@ body {
 
 .arrowLeftPart {
     z-index: 9990;
-    color:#f0ffff;
+/*    color:#f0ffff;*/
     height: 0px;
     width: 0px;
     border-top: 21px solid transparent;
@@ -199,15 +208,12 @@ body {
 .whiteLeftArrow {
     z-index: 9994;
     margin-left: 17px;
-    margin-bottom: -1px;
-    color:#fff;
+    margin-bottom: 1px;
 }
 
 .whiteRightArrow {
     z-index: 9994;
-    color:#fff;
     margin-left: 2px;
-    margin-bottom: -1px;
 }
 
 .keyClicked{
@@ -215,4 +221,6 @@ body {
     border: 1px dotted rgba(7, 104, 178, 0.18);
     background-color: rgba(239, 248, 245, 0.186);
     transform: scale(0.95);
+    color: rgba(11, 11, 11,1);
 }
+
