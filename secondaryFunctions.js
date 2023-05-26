@@ -3,14 +3,14 @@ operate = function (value1, value2, operator) {
   if (operator in operations) {
     return (result = operations[operator](value1, value2));
   }
-}; 
+};
 
 function resetValues() {  //This is our Escape()
   a = b = operator = "";
   enter = true;
   numbers["."] = "."; //we add it if need it}
-  operatorNumbers.textContent="";
-  textNumbers.textContent="";
+  operatorNumbers.textContent = "";
+  textNumbers.textContent = "";
 }
 
 
@@ -42,6 +42,36 @@ function backspace() {   // backspace f() for 1st and 2nd number
       }
     }
   }
+}
+function nightMode() {
+  document.body.classList.toggle("nightKeysChange");
+
+  key.forEach(element => element.classList.toggle("nightKeysChange"))
+
+
+  night.addEventListener("click", function () {
+    night.classList.toggle("keyClicked");
+    let text = night.textContent;
+    if (text === "NightMode OFF") {
+      night.textContent = "NightMode ON";
+      document.body.classList.toggle("nightKeysChange");
+      key.forEach(element => element.classList.toggle("nightKeysChange"))
+      document.body.classList.toggle("nightKeys");
+      key.forEach(element => element.classList.toggle("nightKeys"))
+    }
+    else {
+      night.textContent = "NightMode OFF";
+      document.body.classList.toggle("nightKeysChange");
+      key.forEach(element => element.classList.toggle("nightKeysChange"))
+      document.body.classList.toggle("nightKeys");
+      key.forEach(element => element.classList.toggle("nightKeys"))
+    }
+    console.log(text)
+    setTimeout(() => {
+      night.classList.toggle("keyClicked");
+    }, 300);
+  }
+  )
 }
 
 function main() { //  this is the main Event Listener for keys and clicks()
