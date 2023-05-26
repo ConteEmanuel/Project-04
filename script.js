@@ -1,3 +1,6 @@
+//Doom vars
+let textNumbers = document.getElementById('displayText');
+
 // operations f() start here
 let firstNumber, secondNumber, result, storedResult;
 let pressedKey="";
@@ -92,9 +95,14 @@ function logKey1() {
           console.log(b);
           if (pressedKey === ".") delete numbers["."]; //  Prevents double or more "dots" on 2ndNumber
           d = false;
+          textNumbers.textContent =b;
+          return;
         }
       }
     }
+  }
+  if (a !=""){
+    textNumbers.textContent = a;
   }
   if (a === ".") a = "0."; //  fix . => "0." Display issue on 1stNumber
   if (pressedKey === ".") delete numbers["."]; //  Prevents double or more "dots" on 1ndNumber
@@ -105,19 +113,20 @@ function logKey2() {
   switch (true) {
     case pressedKey === "Control": // Control is Our Sign Change Key Again
       b = "-1" * b;
-      return;
+      textNumbers.textContent =b;
+      break;
     case pressedKey in numbers:
       if (b === "0") {
         //if b = 0 we can Change It
         b = pressedKey;
-        return;
+        break;
       } else {
         b = b + pressedKey; // if not we stack 2ndNumber
         console.log("l85");
         console.log("a " + a);
         console.log("operator " + operator);
         console.log("b=" + b);
-        return;
+        break;
       }
     case pressedKey === "Enter" && enter === true: //Enter is our "=" Operator
     console.log("HI!!!");
@@ -125,10 +134,13 @@ function logKey2() {
       a = Number(a);
       b = Number(b);
       a = parseFloat(operate(a, b, operator)).toFixed(3);
+      textNumbers.textContent =a;
       b = operator = "";
       console.log(a + b + operator);
       d = true;
+      return
   }
+  textNumbers.textContent =b;
 }
 
 function clearData(pressedKey) {   // Clear Button f()
