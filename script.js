@@ -1,6 +1,5 @@
 // operations f() start here
 let firstNumber, secondNumber, result, storedResult, pressedKey;
-
 let operations = {
   "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
   "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
@@ -155,11 +154,12 @@ function backspace(e) {   // backspace f() for 1st and 2nd number
 }
 document.addEventListener("keydown", backspace);
 
-addEventListener("click", (e) => {
+document.getElementById('keyPad').addEventListener("click", (e) => {
     console.log(e.target)
     pressedKey = e.target.closest('div').getAttribute("data-key");
     let divPressed= document.querySelector(`div[data-key="${pressedKey}"]`);
     divPressed.classList.toggle('keyClicked');
+    console.log(pressedKey)
   setTimeout(() =>    {divPressed.classList.toggle('keyClicked')},500)
 
 },{
