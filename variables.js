@@ -1,3 +1,13 @@
+// operations f() vars
+let firstNumber, secondNumber, result, storedResult;
+let pressedKey = "";
+let operations = {
+    "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
+    "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
+    "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
+    "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
+};
+
 //Display Text and Sign Var
 let textNumbers = document.getElementById('displayText');
 let operatorNumbers = document.getElementById('sign');
