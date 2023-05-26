@@ -1,9 +1,9 @@
 //Doom vars
 let textNumbers = document.getElementById('displayText');
-
+let operatorNumbers = document.getElementById('sign');
 // operations f() start here
 let firstNumber, secondNumber, result, storedResult;
-let pressedKey="";
+let pressedKey = "";
 let operations = {
   "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
   "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
@@ -36,7 +36,7 @@ function numberConstructor() {
 }
 numberConstructor();
 
-const operators = { "+": "+", "-": "-", "*": "*", "/": "/", "Enter":"Enter","Control":"Control" };
+const operators = { "+": "+", "-": "-", "*": "*", "/": "/", "Enter": "Enter", "Control": "Control" };
 let a = (b = operator = ""); //a and b are 1st and 2nd number and and the operator corresponds to the operation to execute
 let enter = d = true; // Enter Key State Switch
 
@@ -51,11 +51,9 @@ function resetValues() {
 function logKey1() {
   // careful, return and break don't have the same effect here
   switch (true) {
-    case pressedKey === "Control": {
-      console.log("perrro")
+    case pressedKey === "Control" && a != "": {
       // Control Key is Our Sign Change Key
       a = "-1" * a;
-      console.log(a)
       break;
     }
     case operator === "" && pressedKey in operators: {
@@ -68,7 +66,6 @@ function logKey1() {
     case operator === "" && pressedKey in numbers: {
       // Normal use
       a = a + pressedKey; // !IMPORTANT! we cant use op ternary, because we need this value on var. "a" to execute the next line
-      console.log(a);
       if (a === "0") a = pressedKey; //  If firstNumber = 0 we can Change Again his Value
       break;
     }
@@ -88,22 +85,19 @@ function logKey1() {
         case pressedKey in numbers: {
           //  If op exist and now we ave a Number, we have 2ndNumber
           b = pressedKey;
-          console.log("hello")
-          console.log(b);
           enter = true;
           if (b === ".") b = "0."; //  fix . => "0." Display issue on 2ndNumber
-          console.log(b);
           if (pressedKey === ".") delete numbers["."]; //  Prevents double or more "dots" on 2ndNumber
           d = false;
-          textNumbers.textContent =b;
+          textNumbers.textContent = b;
           return;
         }
       }
     }
   }
-  if (a !=""){
-    textNumbers.textContent = a;
-  }
+  if (operator != "" && operator != "Control" && operator != "Enter") { operatorNumbers.textContent = operator; };
+  if (operators === "Enter") { operatorNumbers.textContent = "=" };
+  if (a != "") { textNumbers.textContent = a; }
   if (a === ".") a = "0."; //  fix . => "0." Display issue on 1stNumber
   if (pressedKey === ".") delete numbers["."]; //  Prevents double or more "dots" on 1ndNumber
 }
@@ -113,7 +107,7 @@ function logKey2() {
   switch (true) {
     case pressedKey === "Control": // Control is Our Sign Change Key Again
       b = "-1" * b;
-      textNumbers.textContent =b;
+      textNumbers.textContent = b;
       break;
     case pressedKey in numbers:
       if (b === "0") {
@@ -122,25 +116,20 @@ function logKey2() {
         break;
       } else {
         b = b + pressedKey; // if not we stack 2ndNumber
-        console.log("l85");
-        console.log("a " + a);
-        console.log("operator " + operator);
-        console.log("b=" + b);
         break;
       }
     case pressedKey === "Enter" && enter === true: //Enter is our "=" Operator
-    console.log("HI!!!");
+      console.log("HI!!!");
       enter = false; // This prevents "Enter" more then once "error"
       a = Number(a);
       b = Number(b);
       a = parseFloat(operate(a, b, operator)).toFixed(3);
-      textNumbers.textContent =a;
+      textNumbers.textContent = a;
       b = operator = "";
-      console.log(a + b + operator);
       d = true;
       return
   }
-  textNumbers.textContent =b;
+  textNumbers.textContent = b;
 }
 
 function clearData(pressedKey) {   // Clear Button f()
@@ -160,59 +149,61 @@ function backspace() {   // backspace f() for 1st and 2nd number
         let auxA = a.split("");
         auxA.pop();
         a = auxA.join("");
+        textNumbers.textContent = a;
         return;
       }
       case a != "" && b != "": {
         let auxB = b.split("");
         auxB.pop();
         b = auxB.join("");
+        textNumbers.textContent = b;
       }
     }
   }
 }
+
 
 
 function getKey() {
   document.getElementById("keyPad").addEventListener(
-      "click",
-      (e) => {
-          pressedKey = e.target.closest("div").getAttribute("data-key");
-          let divPressed = document.querySelector(`div[data-key="${pressedKey}"]`);
-          divPressed.classList.toggle("keyClicked");
-          console.log(pressedKey);
-          logic(pressedKey);
-          setTimeout(() => {
-              divPressed.classList.toggle("keyClicked");
-
-          }, 500);
-      },
-      {
-          capture: false,
-          once: false,
-      }
+    "click",
+    (e) => {
+      pressedKey = e.target.closest("div").getAttribute("data-key");
+      let divPressed = document.querySelector(`div[data-key="${pressedKey}"]`);
+      divPressed.classList.toggle("keyClicked");
+      logic(pressedKey);
+      setTimeout(() => {
+        divPressed.classList.toggle("keyClicked");
+      }, 500);
+    },
+    {
+      capture: false,
+      once: false,
+    }
   );
   document.addEventListener("keydown", (e) => {
-      pressedKey = e.key;
-      console.log(pressedKey);
-      logic(pressedKey);
-    });
+    pressedKey = e.key;
+    logic(pressedKey);
+  });
 }
 getKey();
-function logic(){
-  switch (true){
-    case (pressedKey === "Escape"):{
+function logic() {
+  switch (true) {
+    case (pressedKey === "Escape"): {
       clearData(pressedKey);
-    return;
+      break;
     }
-  case (pressedKey === "Backspace"):
-    {resetValues(pressedKey);
-    return;
+    case (pressedKey === "Backspace"):
+      {
+        backspace(pressedKey);
+        break;
+      }
+    case (pressedKey in numbers && d === true || pressedKey in operators && d === true):
+      {
+        logKey1(pressedKey);
+        break;
+      }
+    case (pressedKey in numbers && (d === false) && (b != "") && (operator != "") || pressedKey in operators && d === false) && (b != "") && (operator != ""):
+      { logKey2(pressedKey); }
   }
-  case (pressedKey in numbers && d === true || pressedKey in operators && d === true):
-  {console.log(pressedKey);
-    logKey1(pressedKey);
-  break;}
-  case (pressedKey in numbers && (d === false) && (b != "") && (operator != "") || pressedKey in operators && d === false) && (b != "") && (operator != ""):
-  {logKey2(pressedKey);}
-}
 }
