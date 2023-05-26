@@ -55,6 +55,7 @@ function logKey1() {
       break;
     }
     case operator === "" && pressedKey in operators: {
+      numbers["."] = ".";
       //  if Operator Don´t Exist and 1stNumber is not Present
       operator = pressedKey; //  then 1stNumber  is Filled with "0" and OP is Assigned
       if (a === "") a = "0";
@@ -68,12 +69,12 @@ function logKey1() {
       break;
     }
     case operator != "": {
-      numbers["."] = "."; // This With the Lines at the End of this f() Prevents Double or More "dots"
-      if (Number(a) == 0) {  // This makes an alert on Division by 0
+      // This With the Lines at the End of this f() Prevents Double or More "dots"
+      if ((Number(a) == 0) && (operator === "/")) {  // This makes an alert on Division by 0
         alert("You can't divide by zero", "Press any Key to continue");
         resetValues();
         return;
-      }
+      };
       switch (true) {
         case pressedKey in operators: {
           // If 1stNUmber and Operator Exist we can change Operator more then Once
@@ -83,6 +84,7 @@ function logKey1() {
         case pressedKey in numbers: {
           //  If op exist and now we ave a Number, we have 2ndNumber
           b = pressedKey;
+          console.log("hello")
           console.log(b);
           enter = true;
           if (b === ".") b = "0."; //  fix . => "0." Display issue on 2ndNumber
