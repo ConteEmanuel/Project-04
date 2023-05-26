@@ -75,6 +75,7 @@ function nightMode() {
 }
 
 function main() { //  this is the main Event Listener for keys and clicks()
+  document.body.style.cursor = "pointer"
   document.getElementById("keyPad").addEventListener(
     "click",
     (e) => {
