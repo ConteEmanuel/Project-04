@@ -100,6 +100,4 @@ function logic() {  //This f() its our main Caller for each case
 nightMode();
 main();
 
-
-
-
+document.body.style.cursor = "pointer"
