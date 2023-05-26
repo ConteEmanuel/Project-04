@@ -68,6 +68,7 @@ function logKey2() {
             a = Number(a);
             b = Number(b);
             a = parseFloat(operate(a, b, operator)).toFixed(3); //This fix same round and fix decimals in one f()
+            a = a*1 //This remove zeros at from the right part after point
             textNumbers.textContent = a;  //This set the result on the Display
             b = operator = "";
             d = true;
