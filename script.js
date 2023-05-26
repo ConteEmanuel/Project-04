@@ -1,5 +1,6 @@
 // operations f() start here
-let firstNumber, secondNumber, result, storedResult, pressedKey;
+let firstNumber, secondNumber, result, storedResult;
+let pressedKey="";
 let operations = {
   "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
   "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
@@ -32,35 +33,38 @@ function numberConstructor() {
 }
 numberConstructor();
 
-const operators = { "+": "+", "-": "-", "*": "*", "/": "/" };
+const operators = { "+": "+", "-": "-", "*": "*", "/": "/", "Enter":"Enter" };
 let a = (b = operator = ""); //a and b are 1st and 2nd number and and the operator corresponds to the operation to execute
-let enter = true; // Enter Key State Switch
+let enter = d = true; // Enter Key State Switch
 
 function resetValues() {
+  console.log("hi!!")
   a = b = operator = "";
   enter = true;
   numbers = {};
   numberConstructor();
 }
 
-function logKey1(e) {
+function logKey1() {
   // careful, return and break don't have the same effect here
   switch (true) {
-    case e.key === "Control" && a != 0: {
+    case pressedKey === "Control" && a != 0: {
       // Control Key is Our Sign Change Key
       a = "-1" * a;
+      console.log(a)
       break;
     }
-    case operator === "" && e.key in operators: {
+    case operator === "" && pressedKey in operators: {
       //  if Operator Don´t Exist and 1stNumber is not Present
-      operator = e.key; //  then 1stNumber  is Filled with "0" and OP is Assigned
+      operator = pressedKey; //  then 1stNumber  is Filled with "0" and OP is Assigned
       if (a === "") a = "0";
       break;
     }
-    case operator === "" && e.key in numbers: {
+    case operator === "" && pressedKey in numbers: {
       // Normal use
-      a = a + e.key; // !IMPORTANT! we cant use op ternary, because we need this value on var. "a" to execute the next line
-      if (a === "0") a = e.key; //  If firstNumber = 0 we can Change Again his Value
+      a = a + pressedKey; // !IMPORTANT! we cant use op ternary, because we need this value on var. "a" to execute the next line
+      console.log(a);
+      if (a === "0") a = pressedKey; //  If firstNumber = 0 we can Change Again his Value
       break;
     }
     case operator != "": {
@@ -71,62 +75,61 @@ function logKey1(e) {
         return;
       }
       switch (true) {
-        case e.key in operators: {
+        case pressedKey in operators: {
           // If 1stNUmber and Operator Exist we can change Operator more then Once
-          operator = e.key;
+          operator = pressedKey;
           return;
         }
-        case e.key in numbers: {
+        case pressedKey in numbers: {
           //  If op exist and now we ave a Number, we have 2ndNumber
-          b = e.key;
+          b = pressedKey;
+          console.log(b);
           enter = true;
           if (b === ".") b = "0."; //  fix . => "0." Display issue on 2ndNumber
-          if (e.key === ".") delete numbers["."]; //  Prevents double or more "dots" on 2ndNumber
-          document.removeEventListener("keydown", logKey1);
-          document.addEventListener("keydown", logKey2);
+          console.log(b);
+          if (pressedKey === ".") delete numbers["."]; //  Prevents double or more "dots" on 2ndNumber
+          d = false;
         }
       }
     }
   }
   if (a === ".") a = "0."; //  fix . => "0." Display issue on 1stNumber
-  if (e.key === ".") delete numbers["."]; //  Prevents double or more "dots" on 1ndNumber
+  if (pressedKey === ".") delete numbers["."]; //  Prevents double or more "dots" on 1ndNumber
 }
 
-document.addEventListener("keydown",logKey1); // this fo in main()
 
-function logKey2(e) {
+function logKey2() {
   switch (true) {
-    case e.key === "Control": // Control is Our Sign Change Key Again
+    case pressedKey === "Control": // Control is Our Sign Change Key Again
       b = "-1" * b;
       return;
-    case e.key in numbers:
+    case pressedKey in numbers:
       if (b === "0") {
         //if b = 0 we can Change It
-        b = e.key;
+        b = pressedKey;
         return;
       } else {
-        b = b + e.key; // if not we stack 2ndNumber
+        b = b + pressedKey; // if not we stack 2ndNumber
         console.log("l85");
         console.log("a " + a);
         console.log("operator " + operator);
         console.log("b=" + b);
         return;
       }
-    case e.key === "Enter" && enter === true: //Enter is our "=" Operator
+    case pressedKey === "Enter" && enter === true: //Enter is our "=" Operator
+    console.log("HI!!!");
       enter = false; // This prevents "Enter" more then once "error"
       a = Number(a);
       b = Number(b);
       a = parseFloat(operate(a, b, operator)).toFixed(3);
       b = operator = "";
       console.log(a + b + operator);
-      document.addEventListener("keydown", logKey1);
+      d = true;
   }
 }
 
-document.addEventListener("keydown", clearData);
-
-function clearData(e) {   // Clear Button f()
-  if (e.key === "Escape") {
+function clearData(pressedKey) {   // Clear Button f()
+  if (pressedKey === "Escape") {
     let confirmation = prompt(
       "Do you want to RESET you current operation?",
       "press yes to reset or any key to Ignore"
@@ -135,8 +138,8 @@ function clearData(e) {   // Clear Button f()
   }
 }
 
-function backspace(e) {   // backspace f() for 1st and 2nd number
-  if (e.key === "Backspace") {
+function backspace() {   // backspace f() for 1st and 2nd number
+  if (pressedKey === "Backspace") {
     switch (true) {
       case a != "" && b === "": {
         let auxA = a.split("");
@@ -152,17 +155,49 @@ function backspace(e) {   // backspace f() for 1st and 2nd number
     }
   }
 }
-document.addEventListener("keydown", backspace);
 
-document.getElementById('keyPad').addEventListener("click", (e) => {
-    console.log(e.target)
-    pressedKey = e.target.closest('div').getAttribute("data-key");
-    let divPressed= document.querySelector(`div[data-key="${pressedKey}"]`);
-    divPressed.classList.toggle('keyClicked');
-    console.log(pressedKey)
-  setTimeout(() =>    {divPressed.classList.toggle('keyClicked')},500)
 
-},{
-  capture: false,
-  once: false
-})
+function getKey() {
+  document.getElementById("keyPad").addEventListener(
+      "click",
+      (e) => {
+          pressedKey = e.target.closest("div").getAttribute("data-key");
+          let divPressed = document.querySelector(`div[data-key="${pressedKey}"]`);
+          divPressed.classList.toggle("keyClicked");
+          console.log(pressedKey);
+          logic(pressedKey);
+          setTimeout(() => {
+              divPressed.classList.toggle("keyClicked");
+
+          }, 500);
+      },
+      {
+          capture: false,
+          once: false,
+      }
+  );
+  document.addEventListener("keydown", (e) => {
+      pressedKey = e.key;
+      console.log(pressedKey);
+      logic(pressedKey);
+    });
+}
+getKey();
+function logic(){
+  switch (true){
+    case (pressedKey === "Escape"):{
+      clearData(pressedKey);
+    return;
+    }
+  case (pressedKey === "Backspace"):
+    {resetValues(pressedKey);
+    return;
+  }
+  case (pressedKey in numbers && d === true || pressedKey in operators && d === true):
+  {console.log(pressedKey);
+    logKey1(pressedKey);
+  break;}
+  case (pressedKey in numbers && (d === false) && (b != "") && (operator != "") || pressedKey in operators && d === false) && (b != "") && (operator != ""):
+  {logKey2(pressedKey);}
+}
+}
