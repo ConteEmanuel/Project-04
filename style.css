@@ -149,10 +149,14 @@ body {
     backdrop-filter:blur( 2px );
     border: 1px solid  rgba(161, 152, 152, 0.18);
 }
-
+#sign{
+    width: 10%;
+    height: 90px;
+}
 #displayText {
     padding: 5px 20px;
     height: 90px;
+    width:500px;
     z-index: 9999;
     font-size: 68px;
     font-weight: lighter;
