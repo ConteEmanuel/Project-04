@@ -1,23 +1,16 @@
-// operations f() start here
-let firstNumber, secondNumber, result, storedResult;
-let pressedKey = "";
-let operations = {
-  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
-  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
-  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
-  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
-};
-
+//operation f()
 operate = function (value1, value2, operator) {
   if (operator in operations) {
     return (result = operations[operator](value1, value2));
   }
-}; // operations f() ends here
+}; 
 
 function resetValues() {  //This is our Escape()
   a = b = operator = "";
   enter = true;
   numbers["."] = "."; //we add it if need it}
+  operatorNumbers.textContent="";
+  textNumbers.textContent="";
 }
 
 
