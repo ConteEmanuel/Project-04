@@ -1,5 +1,5 @@
 // operations f() start here
-let firstNumber, secondNumber, result, storedResult;
+let firstNumber, secondNumber, result, storedResult, pressedKey;
 
 let operations = {
   "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
@@ -93,7 +93,7 @@ function logKey1(e) {
   if (e.key === ".") delete numbers["."]; //  Prevents double or more "dots" on 1ndNumber
 }
 
-document.addEventListener("keydown", logKey1); // this fo in main()
+document.addEventListener("keydown",logKey1); // this fo in main()
 
 function logKey2(e) {
   switch (true) {
@@ -157,13 +157,11 @@ document.addEventListener("keydown", backspace);
 
 addEventListener("click", (e) => {
     console.log(e.target)
-    let touch = e.target.closest('div').getAttribute("data-key");
-    let divTouch= document.querySelector(`div[data-key="${touch}"]`);
-  divTouch.classList.toggle('keyClicked');
-  setTimeout(() =>    {divTouch.classList.toggle('keyClicked')},500)
+    pressedKey = e.target.closest('div').getAttribute("data-key");
+    let divPressed= document.querySelector(`div[data-key="${pressedKey}"]`);
+    divPressed.classList.toggle('keyClicked');
+  setTimeout(() =>    {divPressed.classList.toggle('keyClicked')},500)
 
-  console.log(divTouch)
-    
 },{
   capture: false,
   once: false
