@@ -54,7 +54,7 @@ function main() { //  this is the main Event Listener for keys and clicks()
       logic(pressedKey);
       setTimeout(() => {
         divPressed.classList.toggle("keyClicked");
-      }, 500);
+      }, 300);
     },
     {
       capture: false,
