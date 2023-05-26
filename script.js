@@ -157,10 +157,14 @@ document.addEventListener("keydown", backspace);
 
 addEventListener("click", (e) => {
     console.log(e.target)
-    const touch = e.target.getAttribute("data-key");
-  console.log(touch)
+    let touch = e.target.closest('div').getAttribute("data-key");
+    let divTouch= document.querySelector(`div[data-key="${touch}"]`);
+  divTouch.classList.toggle('keyClicked');
+  setTimeout(() =>    {divTouch.classList.toggle('keyClicked')},500)
+
+  console.log(divTouch)
     
 },{
   capture: false,
-  once: true
+  once: false
 })
