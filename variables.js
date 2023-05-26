@@ -8,9 +8,11 @@ let operations = {
     "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
 };
 
-//Display Text and Sign Var
-let textNumbers = document.getElementById('displayText');
-let operatorNumbers = document.getElementById('sign');
+//Display Text, Sign and NightMode Vars
+const textNumbers = document.getElementById('displayText');
+const operatorNumbers = document.getElementById('sign');
+const night = document.getElementById('nightMode');
+const key = document.querySelectorAll('.key')
 
 let numbers = {
     0: "0",
