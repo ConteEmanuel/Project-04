@@ -41,7 +41,7 @@ function logKey1() {  //This f() gets "a" and the "operator" and first element o
                 }
             }
         }
-    } //This last lines are the reazon of the importance of break over return in some lines 
+    } //This last lines are the reason of the importance of break over return in some lines 
     if (operator != "" && operator != "Control" && operator != "Enter") { operatorNumbers.textContent = operator; };
     if (operator === "Enter") { operatorNumbers.textContent = "=" };
     if (a != "") { textNumbers.textContent = a; }
@@ -68,7 +68,7 @@ function logKey2() {
             a = Number(a);
             b = Number(b);
             a = parseFloat(operate(a, b, operator)).toFixed(3); //This fix same round and fix decimals in one f()
-            a = a*1 //This remove zeros at from the right part after point
+            a = a * 1 //This remove zeros at from the right part after point
             textNumbers.textContent = a;  //This set the result on the Display
             b = operator = "";
             d = true;
@@ -97,5 +97,9 @@ function logic() {  //This f() its our main Caller for each case
             { logKey2(pressedKey); }
     }
 }
-
+nightMode();
 main();
+
+
+
+
