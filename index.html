@@ -1,116 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <script defer src="variables.js"></script>
+    <script defer src="secondaryFunctions.js"></script>
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator</title>
-  <script defer src="script.js"></script>
-  <script defer src="main.js"></script>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <header></header>
-  <main>
-    <div id="calcContainer">
-      <div id="displayContainer">
-        <div id="display">
-          <div id =sign></div>
-          <div id="displayText"></div>
+  <body>
+    <header></header>
+    <main>
+      <div id="calcContainer">
+        <div id="displayContainer">
+          <div id="display">
+            <div id="sign"></div>
+            <div id="displayText"></div>
+          </div>
+        </div>
+        <div id="keyPad">
+          <div id="leftSideKeyPadContainer">
+            <div id="leftSideKeyPad">
+              <div class="keyContainer">
+                <div class="key" data-key="8"><kbd>8</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="7"><kbd>7</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="9"><kbd>9</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="4"><kbd>4</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="5"><kbd>5</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="6"><kbd>6</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="1"><kbd>1</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="2"><kbd>2</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="3"><kbd>3</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="0"><kbd>0</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="."><kbd>.</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="Control">
+                  <kbd>+/-</kbd>
+                  <span class="controlReference">(Control key)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="operatorsContainer">
+            <div id="operators">
+              <div class="keyContainer">
+                <div class="key" data-key="+"><kbd>+</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="-"><kbd>-</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="*"><kbd>*</kbd></div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="/"><kbd>/</kbd></div>
+              </div>
+            </div>
+          </div>
+          <div id="rightSideContainer">
+            <div id="rightSide">
+              <div class="keyContainer">
+                <div class="key" data-key="Escape">
+                  <kyb>Escape</kyb>
+                </div>
+              </div>
+              <div class="keyContainer">
+                <div class="key" data-key="Backspace">
+                  <span class="arrow">
+                    <span class="arrowLeftPart">
+                      <span class="whiteLeftArrow">&#60;</span>
+                    </span>
+                    <span class="arrowRightPart">
+                      <span class="whiteRightArrow">=</span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div class="keyContainer equalContainer">
+                <div class="key" data-key="Enter">
+                  <kyb id="keyEqual">=</kyb>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div id="keyPad">
-        <div id="leftSideKeyPadContainer">
-          <div id="leftSideKeyPad">
-            <div class="keyContainer">
-              <div class="key" data-key="8"><kbd>8</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="7"><kbd>7</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="9"><kbd>9</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="4"><kbd>4</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="5"><kbd>5</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="6"><kbd>6</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="1"><kbd>1</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="2"><kbd>2</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="3"><kbd>3</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="0"><kbd>0</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="."><kbd>.</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="Control">
-                <kbd>+/-</kbd>
-                <span class="controlReference">(Control key)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="operatorsContainer">
-          <div id="operators">
-            <div class="keyContainer">
-              <div class="key" data-key="+"><kbd>+</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="-"><kbd>-</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="*"><kbd>*</kbd></div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="/"><kbd>/</kbd></div>
-            </div>
-          </div>
-        </div>
-        <div id="rightSideContainer">
-          <div id="rightSide">
-            <div class="keyContainer">
-              <div class="key" data-key="Escape">
-                <kyb>Escape</kyb>
-              </div>
-            </div>
-            <div class="keyContainer">
-              <div class="key" data-key="Backspace">
-                <span class="arrow">
-                  <span class="arrowLeftPart">
-                    <span class="whiteLeftArrow">&#60;</span>
-                  </span>
-                  <span class="arrowRightPart">
-                    <span class="whiteRightArrow">=</span>
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="keyContainer equalContainer">
-              <div class="key" data-key="Enter">
-                <kyb id="keyEqual">=</kyb>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-  <footer></footer>
-</body>
-
+    </main>
+    <footer></footer>
+  </body>
 </html>
