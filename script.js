@@ -33,7 +33,7 @@ function numberConstructor() {
 }
 numberConstructor();
 
-const operators = { "+": "+", "-": "-", "*": "*", "/": "/", "Enter":"Enter" };
+const operators = { "+": "+", "-": "-", "*": "*", "/": "/", "Enter":"Enter","Control":"Control" };
 let a = (b = operator = ""); //a and b are 1st and 2nd number and and the operator corresponds to the operation to execute
 let enter = d = true; // Enter Key State Switch
 
@@ -48,7 +48,8 @@ function resetValues() {
 function logKey1() {
   // careful, return and break don't have the same effect here
   switch (true) {
-    case pressedKey === "Control" && a != 0: {
+    case pressedKey === "Control": {
+      console.log("perrro")
       // Control Key is Our Sign Change Key
       a = "-1" * a;
       console.log(a)
