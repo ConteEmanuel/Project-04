@@ -44,9 +44,9 @@ function backspace() {   // backspace f() for 1st and 2nd number
   }
 }
 function nightMode() {
-  document.body.classList.toggle("nightKeysChange");
+  document.body.classList.toggle("nightKeys");
 
-  key.forEach(element => element.classList.toggle("nightKeysChange"))
+  key.forEach(element => element.classList.toggle("nightKeys"))
 
 
   night.addEventListener("click", function () {
