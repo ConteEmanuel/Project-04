@@ -1,9 +1,9 @@
 # Project-04
 "A calculator with keyboard support and extras"
 
-"This is a Browser version of a Calculator with Keyboard Support, also the EXTRA function added for me here is a Night & Black Theme Button.
+"This is a Browser version of a Calculator with Keyboard Support, also the EXTRA function added for me here, it´s a Night & Black Theme Button.
 
-"All the logic is original made by me, i made two objects with numbers and opeators and i susbtract/add elements from them to prevent his use twice, for example, dots, or double "="clicks.
-Also i take some usefull functionalities for example to allow you if you start a number with zero to change it for another number."
+"All the logic is original thinked by me, i made two objects with numbers and opeators and i susbtract/add elements from them to prevent his use twice, for example, dots, or double "="clicks.
+Also i take some usefull functionalities, for example to allow you if you start a number with zero to change it for another number."
 
 "This Proyect dont use Jquery for CSS Responsive. This one only use Vanilla js, and some html and css". 
