@@ -1,5 +1,5 @@
 # Project-04
-a calculator with keyboard support and extras
+"A calculator with keyboard support and extras"
 
 "This is a Browser version of a Calculator with Keyboard Support, also the EXTRA function added for me here is a Night & Black Theme Button.
 
